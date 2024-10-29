@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'application'
+    id "com.github.johnrengelman.shadow" version "7.1.2"
+}
+
+group = 'wtf.bot'
+version = '1.0-SNAPSHOT'
+mainClassName = 'wtf.bot.Main'
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://jitpack.io'
+    }
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    // StaroBotAPI
+    implementation 'com.github.starobot:StaroBotAPI:2.1-SNAPSHOT'
+    // Telegram Bots API
+    implementation 'org.telegram:telegrambots:6.0.1'
+    // lombok
+    compileOnly 'org.projectlombok:lombok:1.18.32'
+    annotationProcessor 'org.projectlombok:lombok:1.18.32'
+    testCompileOnly 'org.projectlombok:lombok:1.18.32'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.32'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+// to use any language other than english
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
